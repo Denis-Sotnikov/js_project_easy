@@ -22,6 +22,17 @@
 Проверить, чтобы все работало без ошибок в консоли */
 'use strict '
 const numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+if (numberOfFilms<=10) {
+    alert('Вы смотрите довольно мало фильмов')
+} else {
+    if (numberOfFilms>10&&numberOfFilms<=30) {
+        alert('Вы классический зритель');
+    } else {
+        if (numberOfFilms>30) {
+            alert('Вы киноман');
+        }
+    }
+}
 const personalMovieDB = {
     count: numberOfFilms,
     movies: {},
@@ -29,18 +40,30 @@ const personalMovieDB = {
     genres: {},
     privat: false
 } 
-let nameOfMovie = prompt('Один из последних просмотренных фильмов?', '');
+/*let nameOfMovie = prompt('Один из последних просмотренных фильмов?', '');
 let countOfMovie = prompt('На сколько оцените его?', '');
 let nameOfMovie_1 = prompt('Один из последних просмотренных фильмов?', '');
 let countOfMovie_1 = prompt('На сколько оцените его?', '');
-
 personalMovieDB.movies[nameOfMovie] = countOfMovie;
 personalMovieDB.movies[nameOfMovie_1] = countOfMovie_1;
-
-console.log(personalMovieDB.movies);
+console.log(personalMovieDB.movies);*/
 
 for (let index = 0; index < 2; index++) {
     let nameOfMovie = prompt('Один из последних просмотренных фильмов?', '');
+    
+    if(nameOfMovie==''||nameOfMovie==undefined) {
+        console.log("Нельзя оставлять пустую строку");
+        alert("Введите название фильма");
+        index--;
+        continue;
+    }
+
+    if(nameOfMovie.length>50) {
+        console.log("Название фильма должно быть не более 50 символов");
+        alert("Название фильма должно быть не более 50 символов");
+        index--;
+        continue;
+    }
     let countOfMovie = prompt('На сколько оцените его?', '');
     personalMovieDB.movies[nameOfMovie] = countOfMovie;
 }
